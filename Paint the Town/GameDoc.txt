@@ -1,0 +1,5 @@
+Paint the Town is a top-down survival shooter made for PC.
+
+You can press three buttons to flip the RGB values on and off--one button for each spectrum.
+
+To kill an enemy, the bullet you fire must match their corresponding color.
