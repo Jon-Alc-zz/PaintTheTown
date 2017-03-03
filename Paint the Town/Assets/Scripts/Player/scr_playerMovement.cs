@@ -1,33 +1,40 @@
-﻿using UnityEngine;
+﻿/* scr_playerMovement.cs
+ * Jonathan F. Alcantara
+ * Allows player to move main object around while constraining its movement to plane
+ */
+
+using UnityEngine;
 using System.Collections;
 
 public class scr_playerMovement : MonoBehaviour {
 
-	public float speed = 1f; // movement speed
-	public float fireRate; // Time between shots
+	public bool isMoving = false;
+	public float speed = 1f; 				// movement speed
+	public float fireRate; 					// Time between shots
 
-	public GameObject playerShot; // player's shot to shoot
+	public GameObject playerShot;           // player's shot to shoot
 	public ParticleSystem playerMuzzlePSys; // muzzle of player's barrel
-	public Transform shotSpawn; // where the bullet will be fired
+	public Transform shotSpawn; 			// where the bullet will be fired
 
-	private float camRayLength = 100f;
-	private float nextFire; // Time to next shot
+	private float camRayLength = 100f;		// distance to cursor
+	private float nextFire; 				// Time to next shot
 	private Rigidbody playerRigidbody;
 	private Vector3 movement;
 
-
 	int floorMask;
 
-	// Use this for initialization
 	void Start () {
 		floorMask = LayerMask.GetMask ("Floor");
 		playerRigidbody = GetComponent<Rigidbody> ();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		float h = Input.GetAxisRaw ("Horizontal"); // get left/right
 		float v = Input.GetAxisRaw ("Vertical");   // get up/down
+
+		if (h != 0 || v != 0) isMoving = true;
+		else isMoving = false;
+
 		Move (h, v);
 		Turning ();
 
@@ -35,8 +42,9 @@ public class scr_playerMovement : MonoBehaviour {
 
 		// firing shots with 'Fire1'
 		if (Input.GetButton ("Fire1") && Time.time > nextFire) {
-			playerMuzzlePSys.Play();
-			nextFire = Time.time + fireRate;
+			playerMuzzlePSys.Play(); // play particle system on gun muzzle
+			nextFire = Time.time + fireRate; // delay on next shot
+			// make shot
 			Instantiate (playerShot, shotSpawn.position, shotSpawn.rotation);
 		}
 

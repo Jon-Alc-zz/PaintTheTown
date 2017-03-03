@@ -1,0 +1,28 @@
+CREDIT:
+
+=====
+AUDIO
+=====
+freesound.org
+
+
+Attribution
+-----------
+joshenanigans - Wine Glass Resonation 30 sec.wav
+http://freesound.org/people/joshenanigans/sounds/128892/
+
+- Used the first second of the audio clip
+- Played the audio clip at a higher pitch
+
+IanM32 - Laser Shots
+http://freesound.org/people/IanM32/sounds/210043/
+
+- Used the first shot in the audio clip
+
+Creative Commons 0
+------------------
+tkimura9 - wglass2.wav
+http://freesound.org/people/tkimura9/sounds/368775/
+
+- Used the first two seconds of the audio clip
+- Edited the audio clip by splicing parts together to loop

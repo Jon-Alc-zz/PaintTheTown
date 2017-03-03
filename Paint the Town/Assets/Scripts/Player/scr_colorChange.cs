@@ -1,14 +1,18 @@
-﻿using UnityEngine;
+﻿/* scr_colorChange.cs
+ * Jonathan F. Alcantara
+ * Gives player ability to change color of main object
+ */
+
+using UnityEngine;
 using System.Collections;
 
 public class scr_colorChange : MonoBehaviour {
 
-	private bool red = false;
-	private bool green = false;
-	private bool blue = false;
-	private Renderer objColor;
+	private bool red = false;   // status of red color
+	private bool green = false; // status of green color
+	private bool blue = false;  // status of blue color
+	private Renderer objColor;  // Renderer of this object
 
-	// Use this for initialization
 	void Start () {
 		objColor = gameObject.GetComponent <Renderer> ();
 		objColor.enabled = true;
@@ -16,8 +20,7 @@ public class scr_colorChange : MonoBehaviour {
 		green = false;
 		blue = false;
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		if (Input.GetKeyDown (KeyCode.Alpha1)) {
 			if (red) red = false;
@@ -65,6 +68,7 @@ public class scr_colorChange : MonoBehaviour {
 		objColor.sharedMaterial = colors [index];
 		*/
 
+		/* // Didn't realize colors had default values
 		if (red && green && blue) { // RGB = White
 			objColor.material.color = Color.white;
 		} else if (red && green && !blue) { // RG = Yellow
@@ -80,9 +84,23 @@ public class scr_colorChange : MonoBehaviour {
 		} else if (!red && !green && blue) { // Blue
 			objColor.material.color = Color.blue;
 		} else { // Black
-			objColor.material.color = new Color(.1f, .1f, .1f, 1f);
+			objColor.material.color = new Color(.1f, .1f, .1f, 1f); // Color.black is too dark
 		}
-			
+		*/
+
+		// Messy but generally more efficient, always 3-4 conditional checks
+		if (red) {
+			if (green) {
+				if (blue) objColor.material.color = Color.white;
+				else objColor.material.color = Color.yellow;
+			} else if (blue) objColor.material.color = Color.magenta;
+			else objColor.material.color = Color.red;
+		} else if (green) {
+			if (blue) objColor.material.color = Color.cyan;
+			else objColor.material.color = Color.green;
+		} else if (blue) objColor.material.color = Color.blue;
+		else objColor.material.color = new Color (.1f, .1f, .1f, 1f); // Color.black is too dark
+
 	}
 		
 }
